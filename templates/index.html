@@ -13,44 +13,70 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     
     <style>
-    .dropbtn {
-      background-color: #4CAF50;
-      color: white;
-      padding: 16px;
-      font-size: 16px;
-      border: none;
-    }
-    
-    .dropdown {
+    /* The container must be positioned relative: */
+    .custom-select {
       position: relative;
-      display: inline-block;
+      font-family: Arial;
     }
     
-    .dropdown-content {
-      display: none;
+    .custom-select select {
+      display: none; /*hide original SELECT element: */
+    }
+    
+    .select-selected {
+      background-color: DodgerBlue;
+    }
+    
+    /* Style the arrow inside the select element: */
+    .select-selected:after {
       position: absolute;
-      background-color: #f1f1f1;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      z-index: 1;
+      content: "";
+      top: 14px;
+      right: 10px;
+      width: 0;
+      height: 0;
+      border: 6px solid transparent;
+      border-color: #fff transparent transparent transparent;
     }
     
-    .dropdown-content a {
-      color: black;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
+    /* Point the arrow upwards when the select box is open (active): */
+    .select-selected.select-arrow-active:after {
+      border-color: transparent transparent #fff transparent;
+      top: 7px;
     }
     
-    .dropdown-content a:hover {background-color: #ddd;}
+    /* style the items (options), including the selected item: */
+    .select-items div,.select-selected {
+      color: #ffffff;
+      padding: 8px 16px;
+      border: 1px solid transparent;
+      border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+      cursor: pointer;
+    }
     
-    .dropdown:hover .dropdown-content {display: block;}
+    /* Style items (options): */
+    .select-items {
+      position: absolute;
+      background-color: DodgerBlue;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 99;
+    }
     
-    .dropdown:hover .dropbtn {background-color: #3e8e41;}
+    /* Hide the items when the select box is closed: */
+    .select-hide {
+      display: none;
+    }
+    
+    .select-items div:hover, .same-as-selected {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
     </style>
     
   
   </head>
+  
   <body>
     <div class="container">
       <div class="row">
@@ -60,21 +86,27 @@
             <li><a href="/about">About</a></li>
             <form action="/graph" method="post">
             
-              <label for="stockname">Stock Ticker Symbol:</label><br>
-              <input type="text" id="stockname" name="stockname"><br>
+              <label for="stockname">Stock Symbol:</label><br>
+              <input type="text" id="stockname" name="stockname"><br><br>
+              
+                  <select id="month" name="month">
+                	  <option value="None">-- Month --</option>
+                	  <option value="April">April 2020</option>
+                	  <option value="May">May 2020</option>
+                	  <option value="June">June 2020</option>
+                  </select><br>
+              
               <input type="checkbox" id="closingpr" name="closingpr" value="Closingpr">
               <label for="closingpr"> Closing Price</label><br>
+              
               <input type="checkbox" id="adjclosingpr" name="adjclosingpr" value="AdjClosingpr">
               <label for="adjclosingpr"> Adjusted Closing Price</label><br>
+              
               <input type="checkbox" id="openpr" name="openpr" value="Openpr">
               <label for="openpr"> Opening Price</label><br>
-              <input type="submit" value="Submit">
-              <select id="month" name="month">
-            	  <option value="None">-- Select --</option>
-            	  <option value="April">April 2020</option>
-            	  <option value="May">May 2020</option>
-            	  <option value="June">June 2020</option>
-              </select>
+              
+              <input type="submit" value="Submit"><br>
+              
             </form>
           </ul>
         </div>
