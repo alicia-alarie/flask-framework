@@ -7,22 +7,75 @@
     <meta name="author" content="@gotoariel">
     <!-- <link rel="icon" href="favicon.ico"> -->
 
-    <title>Wilkommen, bienvenue, and welcome to Heroku!</title>
-
+    <title>Welcome to Stock Ticker Lookup!</title>
+    
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    <style>
+    .dropbtn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+    }
+    
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    
+    .dropdown-content a:hover {background-color: #ddd;}
+    
+    .dropdown:hover .dropdown-content {display: block;}
+    
+    .dropdown:hover .dropbtn {background-color: #3e8e41;}
+    </style>
+    
+  
   </head>
   <body>
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-left">
-          <h2>Hello, World!</h2>
+          <h2>Stock Ticker Lookup</h2>
           <ul>
             <li><a href="/about">About</a></li>
-            <li><a target="_blank" href="https://www.heroku.com/">Heroku</a></li>
-            <li><a target="_blank" href="http://flask.pocoo.org/">Flask</a></li>
-            <li><a target="_blank" href="http://jinja.pocoo.org/docs/2.9/">Jinja2</a></li>
-            <li><a target="_blank" href="http://getbootstrap.com/">Bootstrap</a></li>
+            <form action="/graph" method="post">
+            
+              <label for="stockname">Stock Ticker Symbol:</label><br>
+              <input type="text" id="stockname" name="stockname"><br>
+              <input type="checkbox" id="closingpr" name="closingpr" value="Closingpr">
+              <label for="closingpr"> Closing Price</label><br>
+              <input type="checkbox" id="adjclosingpr" name="adjclosingpr" value="AdjClosingpr">
+              <label for="adjclosingpr"> Adjusted Closing Price</label><br>
+              <input type="checkbox" id="openpr" name="openpr" value="Openpr">
+              <label for="openpr"> Opening Price</label><br>
+              <input type="submit" value="Submit">
+              <select id="month" name="month">
+            	  <option value="None">-- Select --</option>
+            	  <option value="April">April 2020</option>
+            	  <option value="May">May 2020</option>
+            	  <option value="June">June 2020</option>
+              </select>
+            </form>
           </ul>
         </div>
       </div>
@@ -30,6 +83,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </body>
